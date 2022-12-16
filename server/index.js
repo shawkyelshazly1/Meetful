@@ -1,7 +1,10 @@
 const express = require("express"),
 	cors = require("cors"),
-	consola = require("consola");
-const { initDBConnection } = require("./database");
+	consola = require("consola"),
+	{ initDBConnection } = require("./database"),
+	{ ApolloServer } = require("@apollo/server"),
+	{ expressMiddleware } = require("@apollo/server/express4"),
+	{ resolvers, typeDefs } = require("./graphql");
 
 // set env variables config
 require("dotenv").config();
@@ -21,6 +24,23 @@ require("dotenv").config();
 		})
 	);
 	app.use(express.json());
+
+	// setup Apollo Server
+	const server = new ApolloServer({
+		typeDefs,
+		resolvers,
+	});
+
+	// start apollo server
+	await server.start();
+
+	// set graphql gateway
+	app.use(
+		"/graphql",
+		expressMiddleware(server, {
+			context: async ({ req, res }) => ({ req, res }),
+		})
+	);
 
 	// start express server
 	const httpServer = app.listen(process.env.PORT || 5000, () => {

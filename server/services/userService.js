@@ -111,7 +111,7 @@ class UserService {
 
 			// check if same authenticated user to allow editing
 			if (String(existingUser._id) !== String(userId))
-				return await NotAuthorizedGraphQLError("Not Authorized!");
+				return await BadInputGraphQLError("Not Authorized!");
 
 			// #TODO: add option to update profile image here
 
