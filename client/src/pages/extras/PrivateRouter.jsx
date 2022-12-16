@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import LoadingComponent from "../../components/extras/LoadingComponent";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import Login from "../auth/Login";
 
 export default function PrivateRouter({ children }) {
-	const authLoading = false;
-	const currentUser = "";
+	const { currentUser, isAuthLoading } = useContext(CurrentUserContext);
 
 	// check if userauth loading to show loading component
-	if (authLoading) return <>"Loading..."</>;
+	if (isAuthLoading) return <LoadingComponent />;
 
 	// if not loading and userdoesn't exist direct to login page
 	if (!currentUser) return <Login />;

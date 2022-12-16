@@ -1,7 +1,7 @@
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SideBar from "./components/SideBar";
+import SideBar from "./components/sidebar/SideBar";
 import Register from "./pages/auth/Register";
 import PrivateRouter from "./pages/extras/PrivateRouter";
 import Home from "./pages/Home";
