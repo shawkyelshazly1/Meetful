@@ -5,6 +5,8 @@ import SideBar from "./components/SideBar";
 import Register from "./pages/auth/Register";
 import PrivateRouter from "./pages/extras/PrivateRouter";
 import Home from "./pages/Home";
+import ExploreSpaces from "./pages/spaces/exploreSpaces/ExploreSpaces";
+import Spaces from "./pages/spaces/space/Spaces";
 
 export default function RoutesProvider() {
 	return (
@@ -18,10 +20,12 @@ export default function RoutesProvider() {
 						path="*"
 						element={
 							<PrivateRouter>
-								<div className="flex w-full flex-row my-auto gap-4">
+								<div className="flex w-full flex-row my-auto  min-h-[100vh] items-center">
 									<SideBar />
 									<Routes>
 										<Route path="/" element={<Home />} />
+										<Route path="/spaces" element={<ExploreSpaces />} />
+										<Route path="/spaces/:space_id" element={<Spaces />} />
 									</Routes>
 								</div>
 							</PrivateRouter>

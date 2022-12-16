@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ConnectSocial from "../../components/auth/ConnectSocial";
 import RegisterForm from "../../components/auth/RegisterForm";
 
 export default function Register() {
@@ -14,6 +15,7 @@ export default function Register() {
 				</p>
 			</div>
 			<RegisterForm />
+			<ConnectSocial />
 		</div>
 	);
 }

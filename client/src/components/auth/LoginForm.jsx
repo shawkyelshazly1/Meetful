@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ConnectSocial from "./ConnectSocial";
 
 export default function LoginForm() {
 	return (
@@ -31,6 +32,7 @@ export default function LoginForm() {
 					SignUp
 				</Link>
 			</p>
+			
 		</form>
 	);
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import ConnectSocial from "../../components/auth/ConnectSocial";
 import LoginForm from "../../components/auth/LoginForm";
 
 export default function Login() {
@@ -12,7 +13,9 @@ export default function Login() {
 					We Deliver Happiness
 				</p>
 			</div>
+
 			<LoginForm />
+			<ConnectSocial />
 		</div>
 	);
 }
