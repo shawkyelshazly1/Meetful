@@ -1,4 +1,5 @@
 import { useApolloClient, useQuery } from "@apollo/client";
+import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { AUTH_USER } from "../graphql/user/queries";
 
@@ -46,10 +47,23 @@ export const CurrentUserProvider = ({ children }) => {
 	// logout function
 	const logoutUser = () => {
 		// remove token from localstorage
-		localStorage.setItem("accessToken", "");
-		setIsAuthLoading(false);
-		setCurrentUser(null);
-		client.clearStore();
+		if (localStorage.getItem("accessToken") == "" && currentUser !== null) {
+			axios
+				.get("http://localhost:5000/auth/logout", { withCredentials: true })
+				.then((res) => {
+					if (res.status === 200) {
+						console.log("here");
+						setIsAuthLoading(false);
+						setCurrentUser(null);
+						client.clearStore();
+					}
+				});
+		} else {
+			localStorage.setItem("accessToken", "");
+			setIsAuthLoading(false);
+			setCurrentUser(null);
+			client.clearStore();
+		}
 	};
 
 	// statevalues

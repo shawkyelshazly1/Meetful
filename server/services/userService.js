@@ -127,6 +127,23 @@ class UserService {
 			return await BadInputGraphQLError("Something went wrong!");
 		}
 	}
+
+	// find or create use for google oAuth2
+	async FindOrCreateUser(userData) {
+		try {
+			const existingUser = await this.repository.FindUserByEmail(
+				userData.email
+			);
+			if (!existingUser) {
+				const newUser = await this.repository.CreateUser(userData);
+				return newUser;
+			}
+			return existingUser;
+		} catch (error) {
+			consola.error(error);
+			return { error: "Something Went Wrong!" };
+		}
+	}
 }
 
 module.exports = UserService;

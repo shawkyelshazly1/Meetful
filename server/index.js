@@ -4,7 +4,12 @@ const express = require("express"),
 	{ initDBConnection } = require("./database"),
 	{ ApolloServer } = require("@apollo/server"),
 	{ expressMiddleware } = require("@apollo/server/express4"),
-	{ resolvers, typeDefs } = require("./graphql");
+	{ resolvers, typeDefs } = require("./graphql"),
+	cookieParser = require("cookie-parser"),
+	session = require("express-session"),
+	passport = require("passport"),
+	googleAuth = require("./routes/googleAuth"),
+	authRoutes = require("./routes/auth");
 
 // set env variables config
 require("dotenv").config();
@@ -18,12 +23,29 @@ require("dotenv").config();
 	initDBConnection();
 
 	// set express middlewares
+	app.use(express.json());
 	app.use(
 		cors({
 			origin: ["http://localhost:3000", "http://127.0.0.1:3000"],
+			credentials: true,
 		})
 	);
-	app.use(express.json());
+	app.use(cookieParser());
+	app.use(express.urlencoded({ extended: true }));
+
+	app.use(
+		session({
+			secret: process.env.APP_SECRET,
+			saveUninitialized: true,
+			resave: true,
+		})
+	);
+
+	app.use(passport.initialize());
+	app.use(passport.session());
+
+	// setting passport config
+	require("./utils/passport")(passport);
 
 	// setup Apollo Server
 	const server = new ApolloServer({
@@ -41,6 +63,10 @@ require("dotenv").config();
 			context: async ({ req, res }) => ({ req, res }),
 		})
 	);
+
+	// social login routes
+	googleAuth(app);
+	authRoutes(app);
 
 	// start express server
 	const httpServer = app.listen(process.env.PORT || 5000, () => {

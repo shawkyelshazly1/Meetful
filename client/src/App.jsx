@@ -13,6 +13,7 @@ function App() {
 	// basic http link
 	const httpLink = createHttpLink({
 		uri: "http://localhost:5000/graphql",
+		credentials: "include",
 	});
 
 	// auth link with headers

@@ -10,15 +10,18 @@ export default function ConnectSocial() {
 			</div>
 			<div className="flex flex-row gap-4 px-2 items-center justify-center">
 				<RiGoogleFill
-					className="rounded-full p-2 border-2 border-red-400 text-red-400"
+					onClick={() => {
+						window.open("http://localhost:5000/auth/google", "_self");
+					}}
+					className="rounded-full p-2 border-2 border-red-400 text-red-400 cursor-pointer"
 					size={50}
 				/>
 				<RiFacebookFill
-					className="rounded-full p-2 border-2 border-blue-500 text-blue-500"
+					className="rounded-full p-2 border-2 border-blue-500 text-blue-500 cursor-pointer"
 					size={50}
 				/>
 				<RiTwitterFill
-					className="rounded-full p-2 border-2 border-cyan-400 text-cyan-400"
+					className="rounded-full p-2 border-2 border-cyan-400 text-cyan-400 cursor-pointer"
 					size={50}
 				/>
 			</div>
