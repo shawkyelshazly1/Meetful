@@ -10,7 +10,7 @@ export default function PrivateRouter({ children }) {
 	if (isAuthLoading) return <LoadingComponent />;
 
 	// if not loading and userdoesn't exist direct to login page
-	if (!currentUser) return <Login />;
+	if (!currentUser && !isAuthLoading) return <Login />;
 	// else show app components and confirm auth
 	else return children;
 }

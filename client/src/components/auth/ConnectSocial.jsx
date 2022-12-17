@@ -17,6 +17,9 @@ export default function ConnectSocial() {
 					size={50}
 				/>
 				<RiFacebookFill
+					onClick={() => {
+						window.open("http://localhost:5000/auth/facebook", "_self");
+					}}
 					className="rounded-full p-2 border-2 border-blue-500 text-blue-500 cursor-pointer"
 					size={50}
 				/>
