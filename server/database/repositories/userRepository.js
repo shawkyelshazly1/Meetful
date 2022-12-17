@@ -1,4 +1,4 @@
-const { UserModal } = require("../models"),
+const { UserModal, MediaModal } = require("../models"),
 	consola = require("consola"),
 	mongoose = require("mongoose");
 
@@ -8,7 +8,6 @@ class UserRepository {
 	async CreateUser(userData) {
 		try {
 			let newUser = await new UserModal(userData);
-
 			newUser = await newUser.save();
 
 			return newUser;

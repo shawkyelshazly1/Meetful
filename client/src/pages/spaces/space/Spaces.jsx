@@ -5,7 +5,7 @@ import SpeakerCard from "./SpeakerCard";
 
 export default function Spaces() {
 	return (
-		<div className=" w-full h-[100vh] rounded-3xl px-4 py-4 border-l-2 border-[#eaebed] flex flex-col gap-6">
+		<div className=" w-full h-[96vh] md:h-[100vh] rounded-3xl px-4 py-4 border-l-2 border-[#eaebed] flex flex-col gap-6">
 			<div className="flex flex-row gap-4 items-center">
 				<IoIosArrowBack
 					className="bg-[#f0f1f3] text-[#bec4cd] py-1 px-1  rounded-lg"

@@ -24,6 +24,9 @@ export default function ConnectSocial() {
 					size={50}
 				/>
 				<RiTwitterFill
+					onClick={() => {
+						window.open("http://localhost:5000/auth/twitter", "_self");
+					}}
 					className="rounded-full p-2 border-2 border-cyan-400 text-cyan-400 cursor-pointer"
 					size={50}
 				/>

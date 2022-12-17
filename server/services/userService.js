@@ -3,6 +3,7 @@ const { BadInputGraphQLError } = require("../utils/error");
 const consola = require("consola");
 const { hashPassword, generateAccessToken } = require("../utils/auth");
 const bcryptjs = require("bcryptjs");
+const { MediaModal } = require("../database/models");
 
 //classs to interact with user repository on DB
 class UserService {
@@ -135,7 +136,29 @@ class UserService {
 				userData.email
 			);
 			if (!existingUser) {
-				const newUser = await this.repository.CreateUser(userData);
+				const { firstName, lastName, email, social_user_id } = userData;
+				const newUser = await this.repository.CreateUser({
+					firstName,
+					lastName,
+					email,
+					social_user_id,
+				});
+
+				if (userData?.profileImage !== "") {
+					let newMedia = await new MediaModal({
+						url: userData.profileImage,
+						type: "photo",
+						user: newUser._id,
+					});
+					newMedia = await newMedia.save();
+
+					let updatedUser = await this.repository.UpdateUserById(newUser._id, {
+						profileImage: newMedia._id,
+					});
+
+					return updatedUser;
+				}
+
 				return newUser;
 			}
 			return existingUser;

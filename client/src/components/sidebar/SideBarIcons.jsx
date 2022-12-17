@@ -10,10 +10,10 @@ export default function SideBarIcons() {
 	let target = location.pathname.split("/")[1];
 
 	return (
-		<div className="flex flex-col gap-4 items-center justify-center w-full">
+		<div className="flex flex-row md:flex-col gap-4 items-center justify-center w-full">
 			<Link
 				to="/"
-				className={`w-full flex items-center justify-center border-r-[5px] ${
+				className={`w-full flex items-center justify-center md:border-r-[5px] ${
 					target === "" ? " border-[#00a389]" : " border-transparent"
 				}`}
 			>
@@ -26,7 +26,7 @@ export default function SideBarIcons() {
 			</Link>
 			<Link
 				to="/spaces"
-				className={`w-full flex items-center justify-center border-r-[5px] ${
+				className={`w-full flex items-center justify-center md:border-r-[5px] ${
 					target === "spaces" ? " border-[#00a389]" : " border-transparent"
 				}`}
 			>
@@ -41,7 +41,7 @@ export default function SideBarIcons() {
 			</Link>
 			<Link
 				to="/video"
-				className={`w-full flex items-center justify-center border-r-[5px] ${
+				className={`w-full flex items-center justify-center md:border-r-[5px] ${
 					target === "video" ? " border-[#00a389]" : " border-transparent"
 				}`}
 			>

@@ -10,7 +10,8 @@ const express = require("express"),
 	passport = require("passport"),
 	googleAuth = require("./routes/googleAuth"),
 	facebookAuth = require("./routes/facebookAuth"),
-	authRoutes = require("./routes/auth");
+	authRoutes = require("./routes/auth"),
+	twitterAuth = require("./routes/twitterAuth");
 
 // set env variables config
 require("dotenv").config();
@@ -68,6 +69,7 @@ require("dotenv").config();
 	// social login routes
 	googleAuth(app);
 	facebookAuth(app);
+	twitterAuth(app);
 	authRoutes(app);
 
 	// start express server

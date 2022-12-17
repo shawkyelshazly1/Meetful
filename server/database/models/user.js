@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema(
 		social_user_id: { type: String, trim: true },
 		profileImage: {
 			type: mongoose.Types.ObjectId,
-			ref: "media",
+			ref: "Media",
 			autopopulate: true,
 		},
 	},

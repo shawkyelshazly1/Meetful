@@ -5,6 +5,7 @@ import SideBar from "./components/sidebar/SideBar";
 import Register from "./pages/auth/Register";
 import PrivateRouter from "./pages/extras/PrivateRouter";
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 import ExploreSpaces from "./pages/spaces/exploreSpaces/ExploreSpaces";
 import Spaces from "./pages/spaces/space/Spaces";
 
@@ -20,13 +21,20 @@ export default function RoutesProvider() {
 						path="*"
 						element={
 							<PrivateRouter>
-								<div className="flex w-full flex-row my-auto  min-h-[100vh] items-center">
+								<div className="flex w-full flex-col-reverse md:flex-row my-auto  min-h-[100vh] items-center">
 									<SideBar />
 									<Routes>
 										<Route path="/" element={<Home />} />
+										<Route path="/profile/:user_id" element={<Profile />} />
 										<Route path="/spaces" element={<ExploreSpaces />} />
 										<Route path="/spaces/:space_id" element={<Spaces />} />
 									</Routes>
+									<h1 className="text-2xl font-semibold font-Lobster text-[#40a798] md:hidden">
+										MeetFull
+										<span className=" text-slate-300 font-bold text-2xl">
+											.
+										</span>
+									</h1>
 								</div>
 							</PrivateRouter>
 						}
